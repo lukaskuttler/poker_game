@@ -1,8 +1,9 @@
+
 import random
 
 class PlayingCard:
     SUITS = ["♠", "♥", "♦", "♣"]
-    RANKS= ["1", "2", "3", "4", "5" "6", "7", "8", "9", "10", "J", "K", "Q", "A"]
+    RANKS= ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
     def __init__(self, suit, rank):
         if suit not in self.SUITS:
             raise ValueError("ivalid suit")
@@ -17,7 +18,10 @@ class PlayingCard:
 
     @property
     def rank(self):
-        return self.rank
+        return self._rank
+
+    def __lt__(self, other):
+        return self.RANKS.index(self.rank) < self.RANKS.index(other.rank)
 
     def __str__(self):
         return f"{self._rank}{self._suit}"
